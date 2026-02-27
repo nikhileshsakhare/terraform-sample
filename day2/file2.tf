@@ -1,12 +1,8 @@
 provider "aws" {
   region = "ap-south-1"
-  // create a user with admin access (for practicing purpose) and get the access key and secret key and give here
-  // provide access_key and secret_key here of your user
-  
-  // don't directly give the access key and secret key in the code
-  // github won't let you push the code with access key and secret key, it will show error
-  // you can use environment variables or AWS credentials file to avoid this issue
-  // or use IAM Role if you are using EC2 instance to run the terraform code
+  // create an IAM role for ec2 instance, give it admin access (for now), and attach it to your instance
+  // or else you need to give access_key and secret_key of your user in the provider block to run the terraform code
+  // but then you can't push this code to your github repository, it will throw some errors
 }
 
 resource "aws_instance" "nik" {
