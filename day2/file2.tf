@@ -6,7 +6,7 @@ provider "aws" {
 }
 
 resource "aws_instance" "nik" {
-  ami  = "ami-0dcc1e21636832c5d"      // need to give ami id here, not the name
+  ami  = "ami-051a31ab2f4d498f5"      // need to give ami id here, not the name
   instance_type = "t3.micro"
   //count = 3                           // to create multiple instances
   // since we have created one instance aready, it will create 2 more instances and total will be 3 instances
