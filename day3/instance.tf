@@ -2,7 +2,7 @@ provider "aws" {
   region = "ap-south-1"
 }
 
-
+/*
 resource "aws_instance" "nik-1" {
   ami  = "ami-051a31ab2f4d498f5"
   instance_type = "t3.micro"
@@ -13,7 +13,7 @@ resource "aws_instance" "nik-1" {
     Name = "nik"
   }
 }
-
+*/
 
 /*  this is not a good way to create multiple instance with different name
 resource "aws_instance" "nik-2" {
@@ -33,7 +33,7 @@ resource "aws_instance" "nik-3" {
 }
 */
 
-/*  This is a good way to create multiple instance with different name using for_each and toset
+/*  This is a good way to create multiple instance with different name using for_each and toset */
 resource "aws_instance" "nik-4" {
   for_each = toset(["proxy", "app", "db"])
   // for_each is used as a for loop and toset is used to convert the list to set
@@ -43,7 +43,7 @@ resource "aws_instance" "nik-4" {
     Name = each.key     // each.key is used to get the value of the current iteration
   }
 }
-*/
+
 
 /*
 resource "aws_instance" "nik-5" {
