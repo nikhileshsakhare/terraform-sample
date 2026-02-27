@@ -57,8 +57,7 @@ resource "aws_instance" "nik-5" {
 }
 */
 
-//add keypair and security group to the instance
-
+/*
 resource "aws_instance" "nik-6" {
   ami  = "ami-051a31ab2f4d498f5"
   instance_type = "t3.micro"
@@ -67,3 +66,41 @@ resource "aws_instance" "nik-6" {
     Name = "web-server"
   }
 }
+*/
+
+resource "aws_instance" "nik-6" {
+  ami  = "ami-051a31ab2f4d498f5"
+  instance_type = "t3.micro"
+  vpc_security_group_ids = [ "sg-086a84e1169fba374" ] #need sg id here, not the name
+  tags = {
+    Name = "web-server"
+  }
+}
+
+/* Generating SSH Key Pair using Terraform and using it to create an EC2 instance
+# 1. Generate a Private Key (RSA)
+resource "tls_private_key" "my_key" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
+# 2. Register the Public Key with AWS
+resource "aws_key_pair" "generated_key" {
+  key_name   = "my-terraform-key"
+  public_key = tls_private_key.my_key.public_key_openssh
+}
+# 3. Save the Private Key locally as a .pem file
+resource "local_file" "ssh_key" {
+  filename        = "/root/my-terraform-key.pem"
+  content         = tls_private_key.my_key.private_key_pem
+  file_permission = "0400"
+}
+# 4. Create the Instances using the generated key
+resource "aws_instance" "nik-7" {
+  ami  = "ami-051a31ab2f4d498f5"
+  instance_type = "t3.micro"
+  key_name = aws_key_pair.generated_key.key_name
+  tags = {
+    Name = "web-server"
+  }
+}
+*/
