@@ -45,7 +45,7 @@ resource "aws_instance" "nik-4" {
 }
 */
 
-/**/
+/*
 resource "aws_instance" "nik-5" {
   ami  = "ami-051a31ab2f4d498f5"
   instance_type = "t3.micro"
@@ -55,6 +55,15 @@ resource "aws_instance" "nik-5" {
     // count.index is used to get the index of the current iteration, it starts from 0
   }
 }
-
+*/
 
 //add keypair and security group to the instance
+
+resource "aws_instance" "nik-6" {
+  ami  = "ami-051a31ab2f4d498f5"
+  instance_type = "t3.micro"
+  key_name = "nik-mumbai-key"   //only name is enought, it will automatically find the key pair in the region
+  tags = {
+    Name = "web-server"
+  }
+}
