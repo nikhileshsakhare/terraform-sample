@@ -2,7 +2,7 @@ provider "aws" {
   region = "ap-south-1"
 }
 
-/*
+
 resource "aws_instance" "nik-1" {
   ami  = "ami-051a31ab2f4d498f5"
   instance_type = "t3.micro"
@@ -13,7 +13,7 @@ resource "aws_instance" "nik-1" {
     Name = "nik"
   }
 }
-*/
+
 
 /*  this is not a good way to create multiple instance with different name
 resource "aws_instance" "nik-2" {
